@@ -1,8 +1,10 @@
 from telegram.ext import Updater
 from config import TOKEN
 from modules import onay_butonu
+from modules import eglence
 
 def main():
+    eglence.zamanlayici_baslat(updater.bot)
     updater = Updater(TOKEN, use_context=True)
     dp = updater.dispatcher
 
