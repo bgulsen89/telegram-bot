@@ -4,6 +4,7 @@ import json
 import os
 from datetime import datetime
 
+LOG_PATH = "data/onay_loglari.json"
 DATA_PATH = "data/onayli_uyeler.json"
 
 def load_onayli_uyeler():
@@ -36,18 +37,42 @@ def onayla(update: Update, context: CallbackContext):
     user = update.effective_user
     user_id = user.id
     username = user.username or user.full_name
-    onaylilar = load_onayli_uyeler()
+    full_name = user.full_name
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+    # Kayıtlı mı kontrol et
+    onaylilar = load_onayli_uyeler()
     if any(k["id"] == user_id for k in onaylilar):
         update.message.reply_text("Zaten daha önce onay verdiniz 🙂")
         return
 
+    # Onaylı listesine ekle
     onaylilar.append({
         "id": user_id,
         "username": username,
-        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        "timestamp": now
     })
     save_onayli_uyeler(onaylilar)
+
+    # Log dosyasına yaz
+    log_data = []
+    if os.path.exists(LOG_PATH):
+        with open(LOG_PATH, "r", encoding="utf-8") as f:
+            try:
+                log_data = json.load(f)
+            except:
+                log_data = []
+
+    log_data.append({
+        "id": user_id,
+        "username": username,
+        "full_name": full_name,
+        "timestamp": now
+    })
+
+    with open(LOG_PATH, "w", encoding="utf-8") as f:
+        json.dump(log_data, f, ensure_ascii=False, indent=2)
+
     update.message.reply_text("✅ Teşekkürler! Artık gruba mesaj gönderebilirsiniz.")
 
 def mesaj_kontrol(update: Update, context: CallbackContext):
