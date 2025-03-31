@@ -35,8 +35,8 @@ def icerik_gonder(bot: Bot):
         return
 
     if secim == "muzik":
-        bot.send_message(chat_id=CHAT_ID, text=f"🎵 Rastgele müzik önerisi:
-{veri}")
+        bot.send_message(chat_id=CHAT_ID, text=f"🎵 Rastgele müzik önerisi: {muzik_link}")
+
     elif secim == "espri":
         bot.send_message(chat_id=CHAT_ID, text=f"😂 {veri}")
     elif secim == "fıkra":
