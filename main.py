@@ -11,7 +11,7 @@ def main():
     bot = updater.bot
 
     # Geri geldim mesajı
-    bot.send_message(chat_id=CHAT_ID, text="🤖 Bot yeniden başlatıldı! Buradayım, geri geldim aranıza!")
+    bot.send_message(chat_id=CHAT_ID, text="Hey Beach, Geri geldim burdayım cicişler!")
 
     # Eğlence sistemi başlat
     eglence.zamanlayici_baslat(bot)
