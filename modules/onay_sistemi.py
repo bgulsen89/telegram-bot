@@ -34,6 +34,7 @@ def onay_goster(update: Update, context: CallbackContext):
     update.message.reply_text(mesaj, parse_mode="Markdown")
 
 def onayla(update: Update, context: CallbackContext):
+    os.makedirs("data", exist_ok=True)  # ✅ Bu satır eklendi
     user = update.effective_user
     user_id = user.id
     username = user.username or user.full_name
