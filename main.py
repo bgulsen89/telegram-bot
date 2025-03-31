@@ -3,13 +3,21 @@ from config import TOKEN
 from modules import onay_butonu
 from modules import eglence
 
+# Mesaj atılacak grup ID'si (senin grubunun chat_id'si)
+CHAT_ID = -1002520321072  # Bunu kendi grubunun ID’siyle değiştirme, doğru zaten :)
+
 def main():
-   updater = Updater(TOKEN, use_context=True)  # Önce updater tanımlanır
-eglence.zamanlayici_baslat(updater.bot)     # Sonra onun üzerinden .bot kullanılır
+    updater = Updater(TOKEN, use_context=True)
+    bot = updater.bot
 
+    # Geri geldim mesajı
+    bot.send_message(chat_id=CHAT_ID, text="🤖 Bot yeniden başlatıldı! Buradayım, geri geldim aranıza!")
+
+    # Eğlence sistemi başlat
+    eglence.zamanlayici_baslat(bot)
+
+    # Komutları dinleyiciye ekle
     dp = updater.dispatcher
-
-    # Onay sistemini ekle
     onay_butonu.kayit_ol(dp)
 
     updater.start_polling()
