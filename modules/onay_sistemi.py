@@ -4,8 +4,11 @@ import json
 import os
 from datetime import datetime
 
-LOG_PATH = "data/onay_loglari.json"
-DATA_PATH = "data/onayli_uyeler.json"
+S
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_PATH = os.path.join(BASE_DIR, "data", "onay_loglari.json")
+DATA_PATH = os.path.join(BASE_DIR, "data", "onayli_uyeler.json")
 
 def load_onayli_uyeler():
     if not os.path.exists(DATA_PATH):
