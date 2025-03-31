@@ -4,8 +4,9 @@ from modules import onay_butonu
 from modules import eglence
 
 def main():
-    eglence.zamanlayici_baslat(updater.bot)
-    updater = Updater(TOKEN, use_context=True)
+   updater = Updater(TOKEN, use_context=True)  # Önce updater tanımlanır
+eglence.zamanlayici_baslat(updater.bot)     # Sonra onun üzerinden .bot kullanılır
+
     dp = updater.dispatcher
 
     # Onay sistemini ekle
