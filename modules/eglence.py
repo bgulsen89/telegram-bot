@@ -49,7 +49,7 @@ def icerik_gonder(bot: Bot):
 def zamanlayici_baslat(bot: Bot):
     def dongu():
         while True:
-            time.sleep(1 * 60)  # 15 dakika
+            time.sleep(15 * 60)  # 15 dakika
             icerik_gonder(bot)
 
     threading.Thread(target=dongu, daemon=True).start()
